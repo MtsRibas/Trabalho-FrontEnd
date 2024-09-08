@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { Postagem } from "../Postagem/Postagem";
 
 const TxtBanner = styled.div`
   font-family: Helvetica, sans-serif;
@@ -15,6 +16,7 @@ const H1 = styled.p`
   font-size: 60px;
   font-weight: medium;
 `;
+
 const Destaque = styled.span`
   font-weight: bold;
 `;
@@ -42,18 +44,31 @@ const Button = styled.button`
   }
 `;
 
-export class Banner extends React.Component {
-  render() {
-    return (
-      <>
-        <TxtBanner>
-          <H1>
-            Bem vindo ao <Destaque>blogCria</Destaque>,
-          </H1>
-          <H2>o lugar das postagens de “cria”!</H2>
-          <Button>Criar Postagem</Button>
-        </TxtBanner>
-      </>
-    );
-  }
-}
+export const Banner = ({ adicionarPostagem }) => {
+  const [mostrarInputs, setMostrarInputs] = useState(false);
+
+  const CriarPost = () => {
+    setMostrarInputs(true);
+  };
+
+  const PostExibido = (novaPostagem) => {
+    adicionarPostagem(novaPostagem);
+    setMostrarInputs(false);
+  };
+
+  return (
+    <>
+      <TxtBanner>
+        <H1>
+          Bem vindo ao <Destaque>blogCria</Destaque>,
+        </H1>
+        <H2>o lugar das postagens de “cria”!</H2>
+        {!mostrarInputs ? (
+          <Button onClick={CriarPost}>Criar Postagem</Button>
+        ) : (
+          <Postagem PostCriado={PostExibido} />
+        )}
+      </TxtBanner>
+    </>
+  );
+};

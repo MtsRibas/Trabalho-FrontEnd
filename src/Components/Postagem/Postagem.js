@@ -1,45 +1,74 @@
 import React from "react";
-import styled from "styled-components";
-const Descricao = styled.textarea`
-  width: 100%;
-  height: 10rem;
-  max-width: 100%;
-  max-height: 15rem;
-`;
 
 export class Postagem extends React.Component {
   state = {
     titulo: "",
     descricao: "",
+    foto: "",
   };
 
   onChangeTitulo = (event) => {
-    let titulo = event.target.value;
     this.setState({ titulo: event.target.value });
-    console.log(this.state.titulo);
-    if (titulo.length >= 50) {
-      alert("o texto nao pode ser maior que 50");
-    }
   };
+
   onChangeDescricao = (event) => {
     this.setState({ descricao: event.target.value });
-    console.log(this.state.descricao);
+  };
+
+  onChangeFoto = (event) => {
+    this.setState({ foto: event.target.value });
+  };
+
+  AdicionarPostagem = () => {
+    const { titulo, descricao, foto } = this.state;
+
+    if (!titulo || !descricao) {
+      alert("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+    const fotoFinal =
+      foto === "" ? "https://picsum.photos/seed/picsum/200/300" : foto;
+    const novaPostagem = { titulo, descricao, foto: fotoFinal };
+    this.props.PostCriado(novaPostagem);
+
+    this.setState({ titulo: "", descricao: "", foto: "" });
   };
 
   render() {
     return (
-      <>
+      <div>
+        <p>Título</p>
+        <input
+          type="text"
+          maxLength={50}
+          name="Titulo"
+          onChange={this.onChangeTitulo}
+          value={this.state.titulo}
+          placeholder="Título"
+          required
+        />
         <div>
+          <p>Descrição</p>
           <input
             type="text"
-            maxLength={50}
-            name="Titulo"
-            onChange={this.onChangeTitulo}
-            value={this.state.titulo}
+            name="Descricao"
+            onChange={this.onChangeDescricao}
+            value={this.state.descricao}
+            placeholder="Descrição"
+            required
           />
         </div>
-        <Descricao onChange={this.onChangeDescricao}></Descricao>
-      </>
+
+        <p>Foto</p>
+        <input
+          type="text"
+          name="foto"
+          onChange={this.onChangeFoto}
+          value={this.state.foto}
+          placeholder="URL da Foto"
+        />
+        <button onClick={this.AdicionarPostagem}>Adicionar</button>
+      </div>
     );
   }
 }
