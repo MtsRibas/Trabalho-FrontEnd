@@ -2,28 +2,28 @@ import React from "react";
 import styled from "styled-components";
 
 const Obrigatorio = styled.span`
-  &::after{
+  &::after {
     content: "*";
     color: red;
   }
-`
+`;
 
 const CampoFormulario = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%
-`
+  width: 100%;
+`;
 const TituloSection = styled.p`
   padding: 0 0 0 0.4rem;
   margin: 0rem 0rem 0.4rem 0rem;
-`
+`;
 
 const TituloEFoto = styled.div`
   display: flex;
-  flex- direction: row;
+  flex-direction: row;
   gap: 1rem;
-  width: 100%
-`
+  width: 100%;
+`;
 
 const Form = styled.div`
   display: flex;
@@ -33,25 +33,25 @@ const Form = styled.div`
   gap: 2rem;
   width: 70%;
   margin: 3rem 0 0 0;
-`
+`;
 
-const TxtArea = styled.input `
+const TxtArea = styled.input`
   font-family: Helvetica, sans-serif;
   height: 2.5rem;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border: none;
-  padding: 0.2rem 0 0 0.4rem
-`
+  padding: 0.2rem 0 0 0.4rem;
+`;
 
-const TxtAreaDescricao = styled.textarea `
+const TxtAreaDescricao = styled.textarea`
   font-family: Helvetica, sans-serif;
   padding: 0.2rem 0 3rem 0.4rem;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border: none;
   max-width: 100%;
-`
+`;
 
-const BtnAdicionar = styled.button `
+const BtnAdicionar = styled.button`
   font-family: Helvetica, sans-serif;
   padding: 16px 48px;
   border-radius: 16px;
@@ -69,12 +69,7 @@ const BtnAdicionar = styled.button `
 
   justify-content: center;
   width: 35%;
-`
-
-
-
-
-
+`;
 
 export class Postagem extends React.Component {
   state = {
@@ -84,11 +79,11 @@ export class Postagem extends React.Component {
   };
 
   onChangeTitulo = (event) => {
-    this.setState({ titulo: event.target.value });
-    let titulo = this.state.titulo;
-    if(titulo.length >= 50){
-      alert("Numero de caracteres invalido")
+    let titulo = event.target.value;
+    if (titulo.length === 50) {
+      alert("Numero de caracteres invalido");
     }
+    this.setState({ titulo: event.target.value });
   };
 
   onChangeDescricao = (event) => {
@@ -119,7 +114,10 @@ export class Postagem extends React.Component {
       <Form>
         <TituloEFoto>
           <CampoFormulario>
-            <TituloSection>Título<Obrigatorio/></TituloSection>
+            <TituloSection>
+              Título
+              <Obrigatorio />
+            </TituloSection>
             <TxtArea
               type="text"
               maxLength={50}
@@ -142,11 +140,12 @@ export class Postagem extends React.Component {
             />
           </CampoFormulario>
         </TituloEFoto>
-        
-        
 
         <CampoFormulario>
-          <TituloSection>Descrição<Obrigatorio/></TituloSection>
+          <TituloSection>
+            Descrição
+            <Obrigatorio />
+          </TituloSection>
           <TxtAreaDescricao
             type="text"
             name="Descricao"
@@ -158,8 +157,6 @@ export class Postagem extends React.Component {
         </CampoFormulario>
 
         <BtnAdicionar onClick={this.AdicionarPostagem}>Adicionar</BtnAdicionar>
-
-        
       </Form>
     );
   }
