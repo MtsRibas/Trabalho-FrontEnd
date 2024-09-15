@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Modal } from "../Modal/Modal";
 
 const PostagemContainer = styled.div`
   display: grid;
@@ -36,16 +37,25 @@ const Titulo = styled.p`
   font-size: 2.5rem;
   font-weight: bold;
   margin: 0;
-`
+  word-wrap: break-word;
+  max-width: 100%;
+  text-transform: capitalize;
+`;
+
 const Descricao = styled.p`
   font-family: Helvetica, sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   margin: 0;
-`
+  word-wrap: break-word;
+  max-width: 100%;
+`;
 
 const TxtPostagem = styled.div`
-`//essa .div serve apenas para juntar os dois textos (titulo + descricao) nao precisa adicionar nada nela
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 
 const BtnDelete = styled.button`
   width: 35%;
@@ -63,11 +73,52 @@ const BtnDelete = styled.button`
     border: 2px solid red;
     color: white;
   }
-`
+`;
+
+const LeiaMais = styled.span`
+  font-family: Helvetica, sans-serif;
+  color: #0084ff;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-top: 0.5rem;
+  display: inline-block;
+
+  &:hover {
+    color: #024889;
+  }
+`;
 
 export class ListaPostagens extends Component {
+  state = {
+    descricaoCompleta: null,
+    modal: false,
+  };
+
+  exibirDescricao = (descricao) => {
+    this.setState({ descricaoCompleta: descricao, modal: true });
+  };
+
+  fecharModal = () => {
+    this.setState({ modal: false });
+  };
+
+  limiteDescricao = (descricao) => {
+    if (descricao.length > 400) {
+      return (
+        <>
+          {descricao.substring(0, 400)}...
+          <LeiaMais onClick={() => this.exibirDescricao(descricao)}>
+            Leia mais
+          </LeiaMais>
+        </>
+      );
+    }
+    return descricao;
+  };
+
   render() {
     const { postagens, referencia, Deletar } = this.props;
+    const { descricaoCompleta, modal } = this.state;
 
     return (
       <div>
@@ -82,15 +133,22 @@ export class ListaPostagens extends Component {
             <ConteudoPostagem>
               <TxtPostagem>
                 <Titulo>{postagem.titulo}</Titulo>
-                <Descricao>{postagem.descricao}</Descricao>
+                <Descricao>
+                  {this.limiteDescricao(postagem.descricao)}
+                </Descricao>
               </TxtPostagem>
-              <BtnDelete onClick={() => Deletar(postagem.id)}>Deletar</BtnDelete>
+              <BtnDelete onClick={() => Deletar(postagem.id)}>
+                Deletar
+              </BtnDelete>
             </ConteudoPostagem>
           </PostagemContainer>
         ))}
+        <Modal
+          aberto={modal}
+          fechado={this.fecharModal}
+          descricaoCompleta={descricaoCompleta}
+        />
       </div>
     );
   }
 }
-
-export default ListaPostagens;
