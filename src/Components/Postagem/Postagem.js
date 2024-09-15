@@ -78,6 +78,8 @@ export class Postagem extends React.Component {
     foto: "",
   };
 
+  
+
   onChangeTitulo = (event) => {
     let titulo = event.target.value;
     if (titulo.length === 50) {
@@ -109,6 +111,12 @@ export class Postagem extends React.Component {
     this.setState({ titulo: "", descricao: "", foto: "" });
   };
 
+  EnterPressionado = (event) => {
+    if (event.key === 'Enter') {
+      this.AdicionarPostagem();
+    }
+  };
+
   render() {
     return (
       <Form>
@@ -126,6 +134,7 @@ export class Postagem extends React.Component {
               value={this.state.titulo}
               placeholder="Título"
               required
+              onKeyDown={this.EnterPressionado}
             />
           </CampoFormulario>
 
@@ -137,6 +146,7 @@ export class Postagem extends React.Component {
               onChange={this.onChangeFoto}
               value={this.state.foto}
               placeholder="URL da Foto"
+              onKeyDown={this.EnterPressionado}
             />
           </CampoFormulario>
         </TituloEFoto>
@@ -153,6 +163,7 @@ export class Postagem extends React.Component {
             value={this.state.descricao}
             placeholder="Descrição"
             required
+            onKeyDown={this.EnterPressionado}
           />
         </CampoFormulario>
 
