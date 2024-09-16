@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+![decria](https://github.com/user-attachments/assets/be997793-c67d-488a-aa50-a3e8efb921ad)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+link: // link aqui
 
-## Available Scripts
+## Description: 
 
-In the project directory, you can run:
+This project was crated the obje
 
 ### `npm start`
 
