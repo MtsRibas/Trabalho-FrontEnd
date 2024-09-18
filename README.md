@@ -42,7 +42,7 @@ npm install
 
 4. Run the Project
 ```bash
-   npm run start
+npm run start
 ```
 
 5. Build the Project for Production
