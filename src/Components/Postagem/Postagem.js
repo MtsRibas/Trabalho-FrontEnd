@@ -167,7 +167,7 @@ export class Postagem extends React.Component {
           />
         </CampoFormulario>
 
-        <BtnAdicionar onClick={this.AdicionarPostagem}>Adicionar</BtnAdicionar>
+        <BtnAdicionar onClick={this.AdicionarPostagem}>Postar</BtnAdicionar>
       </Form>
     );
   }
