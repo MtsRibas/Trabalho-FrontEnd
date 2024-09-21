@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Cabecalho, BotaoPostagens } from "./HeaderStyles";
 
 export class Header extends React.Component {

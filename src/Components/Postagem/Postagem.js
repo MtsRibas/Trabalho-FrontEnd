@@ -1,77 +1,14 @@
 import React from "react";
-import styled from "styled-components";
-//import { Obrigatorio, CampoFormulario, TituloSection, TituloEFoto, Form, TxtArea, TxtAreaDescricao, BtnAdicionar } from "./PostagemStyles";
-
-//
-const Obrigatorio = styled.span`
-  &::after {
-    content: "*";
-    color: red;
-  }
-`;
-
-const CampoFormulario = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-const TituloSection = styled.p`
-  padding: 0 0 0 0.4rem;
-  margin: 0rem 0rem 0.4rem 0rem;
-`;
-
-const TituloEFoto = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  width: 100%;
-`;
-
-const Form = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-  width: 70%;
-  margin: 3rem 0 0 0;
-`;
-
-const TxtArea = styled.input`
-  font-family: Helvetica, sans-serif;
-  height: 2.5rem;
-  background-color: #f1f1f1;
-  border: none;
-  padding: 0.2rem 0 0 0.4rem;
-`;
-
-const TxtAreaDescricao = styled.textarea`
-  font-family: Helvetica, sans-serif;
-  padding: 0.2rem 0 3rem 0.4rem;
-  background-color: #f1f1f1;
-  border: none;
-  max-width: 100%;
-`;
-
-const BtnAdicionar = styled.button`
-  font-family: Helvetica, sans-serif;
-  padding: 16px 48px;
-  border-radius: 16px;
-  background-color: #0084ff;
-  border: 2px solid #0084ff;
-  color: #ffff;
-  font-size: 16px;
-  font-weight: medium;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #024889;
-    border: 2px solid #024889;
-  }
-
-  justify-content: center;
-  width: 35%;
-`;
+import {
+  Obrigatorio,
+  CampoFormulario,
+  TituloSection,
+  TituloEFoto,
+  Form,
+  TxtArea,
+  TxtAreaDescricao,
+  BtnAdicionar,
+} from "./PostagemStyles";
 
 export class Postagem extends React.Component {
   state = {
@@ -79,8 +16,6 @@ export class Postagem extends React.Component {
     descricao: "",
     foto: "",
   };
-
-  
 
   onChangeTitulo = (event) => {
     let titulo = event.target.value;
@@ -106,7 +41,9 @@ export class Postagem extends React.Component {
       return;
     }
     const fotoFinal =
-      foto === "" ? "https://picsum.photos/seed/picsum/200/300" : foto;
+      foto === ""
+        ? "https://scontent.fitp3-1.fna.fbcdn.net/v/t1.18169-9/15541317_690018271160272_6917414903352852076_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=1QnYMWzntnkQ7kNvgH5hRw-&_nc_ht=scontent.fitp3-1.fna&oh=00_AYDtC1VrriDbW9CAH4mks8ECO1I-IBuJ5w3w0QcI8RcmfA&oe=6716803E"
+        : foto;
     const novaPostagem = { titulo, descricao, foto: fotoFinal };
     this.props.PostCriado(novaPostagem);
 
@@ -114,7 +51,7 @@ export class Postagem extends React.Component {
   };
 
   EnterPressionado = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       this.AdicionarPostagem();
     }
   };

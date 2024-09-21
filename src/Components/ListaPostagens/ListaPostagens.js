@@ -1,7 +1,17 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { Modal } from "../Modal/Modal";
-import { LeiaMais,  BtnDelete, TxtPostagem, Descricao, Titulo, ConteudoPostagem, ImagemPostagem, PostagemContainer} from "./ListaPostagensStyles";
+import {
+  LeiaMais,
+  BtnDelete,
+  TxtPostagem,
+  Descricao,
+  Titulo,
+  ConteudoPostagem,
+  ImagemPostagem,
+  PostagemContainer,
+} from "./ListaPostagensStyles";
+
+
 export class ListaPostagens extends Component {
   state = {
     descricaoCompleta: null,

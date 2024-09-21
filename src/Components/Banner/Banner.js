@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { Postagem } from "../Postagem/Postagem";
-import { TxtBanner, H1, Destaque, H2, Button} from "./BannerStyles";
+import { TxtBanner, H1, Destaque, H2, Button } from "./BannerStyles";
 
 export const Banner = ({ adicionarPostagem }) => {
   const [mostrarInputs, setMostrarInputs] = useState(false);
