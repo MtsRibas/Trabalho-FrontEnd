@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+//import { Obrigatorio, CampoFormulario, TituloSection, TituloEFoto, Form, TxtArea, TxtAreaDescricao, BtnAdicionar } from "./PostagemStyles";
 
+//
 const Obrigatorio = styled.span`
   &::after {
     content: "*";
